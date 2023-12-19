@@ -32,7 +32,6 @@ export const Promotion = () => {
   return (
     <Box>
       <Heading as={'h3'}>Aktualne promocje</Heading>
-      <Heading>Lista użytkowników</Heading>
       <Stack>
         <Stack>
           <Info

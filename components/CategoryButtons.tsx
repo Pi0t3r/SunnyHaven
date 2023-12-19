@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Link as ChakraLink,
   Image,
   Stack,
   Text,

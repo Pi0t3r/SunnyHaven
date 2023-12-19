@@ -5,6 +5,7 @@ const Item: React.FC<ItemProps> = ({title, price, src}) => {
   return (
     <Box border='1px solid black' overflow='hidden'>
       <Image
+        alt=''
         src={src}
         transition='transform .5s ease-out'
         _hover={{
