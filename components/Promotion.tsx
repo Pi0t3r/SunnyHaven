@@ -1,5 +1,6 @@
 import {Box, Heading, Stack, Text, Image} from '@chakra-ui/react';
 import {InfoProps} from '../types/types';
+import {useState, useEffect} from 'react';
 const Info: React.FC<InfoProps> = ({title, desc}) => {
   return (
     <Box>
@@ -29,9 +30,27 @@ const Info: React.FC<InfoProps> = ({title, desc}) => {
 };
 
 export const Promotion = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('/users')
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+      .catch((error) =>
+        console.error('Błąd podczas pobierania użytkowników:', error)
+      );
+  }, []);
   return (
     <Box>
       <Heading as={'h3'}>Aktualne promocje</Heading>
+      <p>Lista użytkowników:</p>
+      {users.map((user) => (
+        <Info
+          key={user._id}
+          title={user.username}
+          desc={`Email: ${user.email}`}
+        />
+      ))}
       <Stack>
         <Stack>
           <Info
