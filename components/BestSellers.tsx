@@ -23,7 +23,7 @@ const Item: React.FC<ItemProps> = ({title, price, src}) => {
 
 export const BestSellers = () => {
   return (
-    <Box>
+    <Box textAlign='center'>
       <Heading textTransform='uppercase'>bestsellery</Heading>
       <Stack padding='10px'>
         <Item

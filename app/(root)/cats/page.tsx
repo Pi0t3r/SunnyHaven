@@ -1,6 +1,7 @@
 'use client'
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import Image from 'next/image';
 
 const CatsPage: React.FC = () => {
   const [cats, setCats] = useState([]);
@@ -24,7 +25,7 @@ const CatsPage: React.FC = () => {
       <ul>
         {cats.map((cat) => (
           <li key={cat._id}>
-            <img src={cat.image} alt={cat.name} />
+            <Image src={cat.image} alt={cat.name} width={200} height={200} />
             <p>{cat.name}</p>
             <p>{cat.price}</p>
           </li>

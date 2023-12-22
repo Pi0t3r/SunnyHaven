@@ -1,6 +1,7 @@
-'use client'
+'use client';
 import {CloseIcon, HamburgerIcon} from '@chakra-ui/icons';
 import {Box, Button, ButtonGroup} from '@chakra-ui/react';
+import {FaBasketShopping} from 'react-icons/fa6';
 import {PL, US} from 'country-flag-icons/react/3x2';
 import {Sidebar} from './Sidebar';
 import {useState} from 'react';
@@ -15,7 +16,7 @@ export const Header = () => {
     <Box>
       <Box
         padding='5px'
-        backgroundColor='red'
+        backgroundColor='#efefef'
         display='flex'
         justifyContent='space-between'
         alignItems='center'
@@ -28,7 +29,11 @@ export const Header = () => {
             alt={''}
           />
         </Box>
+
         <ButtonGroup zIndex='100'>
+          <Button variant='ghost'>
+            <FaBasketShopping />
+          </Button>
           <Button variant='ghost' onClick={toggleLanguage}>
             {language === 'PL' ? (
               <PL title='Poland' width='30px' />

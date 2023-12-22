@@ -2,7 +2,7 @@ import { Box, Stack, Text } from '@chakra-ui/react'
 import { FaFacebookF, FaInstagram } from 'react-icons/fa'
 export const Footer = () => {
   return (
-    <Box background="black" color="white" textAlign="center" padding="15px">
+    <Box background="black" color="white" textAlign="center" padding={10}>
       <Stack>
         <Text>+48 999 999 999</Text>
         <Text>pn-pt 09:00 - 18:00</Text>

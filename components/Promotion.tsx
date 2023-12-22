@@ -3,7 +3,7 @@ import {InfoProps} from '../types/types';
 import {useState, useEffect} from 'react';
 const Info: React.FC<InfoProps> = ({title, desc}) => {
   return (
-    <Box>
+    <Box textAlign='center'>
       <Text
         display='inline'
         textTransform='uppercase'
@@ -30,40 +30,24 @@ const Info: React.FC<InfoProps> = ({title, desc}) => {
 };
 
 export const Promotion = () => {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetch('/users')
-      .then((response) => response.json())
-      .then((data) => setUsers(data))
-      .catch((error) =>
-        console.error('Błąd podczas pobierania użytkowników:', error)
-      );
-  }, []);
   return (
-    <Box>
+    <Box padding={5}>
       <Heading as={'h3'}>Aktualne promocje</Heading>
-      <p>Lista użytkowników:</p>
-      {users.map((user) => (
-        <Info
-          key={user._id}
-          title={user.username}
-          desc={`Email: ${user.email}`}
-        />
-      ))}
       <Stack>
         <Stack>
           <Info
             title='Zbilansowana'
-            desc='Lorem ipsum dolor sit amet consectetur adipisicing.'
+            desc='Zbilansowana karma dla kotów o pełnowartościowym składzie.'
           />
           <Info
             title='Antyoksydacyjna'
-            desc='Lorem ipsum dolor sit amet consectetur adipisicing.'
+            desc='
+            Antyoksydacyjna karma dla kotów, chroniąca przed wolnymi rodnikami.'
           />
           <Info
             title='Białkowa'
-            desc='Lorem ipsum dolor sit amet consectetur adipisicing.'
+            desc='
+            Białkowa karma dla kotów, bogata w proteiny.'
           />
         </Stack>
         <Box>
@@ -74,16 +58,17 @@ export const Promotion = () => {
         </Box>
         <Stack>
           <Info
-            title='naturalna'
-            desc='Lorem ipsum dolor sit amet consectetur adipisicing.'
+            title='Naturalna'
+            desc='
+            Naturalna karma dla kotów, bez sztucznych dodatków.'
           />
           <Info
             title='uniwersalna'
-            desc='Lorem ipsum dolor sit amet consectetur adipisicing.'
+            desc='Uniwersalna karma dla kotów, odpowiednia dla różnych potrzeb.'
           />
           <Info
             title='Zdrowotna'
-            desc='Lorem ipsum dolor sit amet consectetur adipisicing.'
+            desc='Zdrowotna karma dla kotów, wspierająca dobre samopoczucie zdrowia.'
           />
         </Stack>
       </Stack>

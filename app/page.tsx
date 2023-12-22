@@ -1,4 +1,5 @@
 'use client';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {Box, Heading, chakra} from '@chakra-ui/react';
 import {BestSellers} from '../components/BestSellers';
 import {CategoryButtons} from '../components/CategoryButtons';
@@ -13,7 +14,7 @@ export default function Home() {
         <Heading as='h2' size='xl' textAlign='center'>
           Nowości dla Twoich pupili
         </Heading>
-        {/* <CarouselComponent /> */}
+        <CarouselComponent />
       </chakra.section>
       <chakra.section>
         <Promotion />

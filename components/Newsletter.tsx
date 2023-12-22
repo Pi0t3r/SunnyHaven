@@ -20,6 +20,7 @@ export const Newsletter = () => {
           bottom: 0,
           backgroundColor: '#635f5fa8',
         }}
+        
       />
       <Stack
         zIndex={11}
@@ -28,6 +29,8 @@ export const Newsletter = () => {
         top="50%"
         transform="translate(-50%, -50%)"
         color="white"
+        width='100%'
+        padding={10}
       >
         <Text zIndex={13} fontSize="3xl">
           Dołącz do nas
