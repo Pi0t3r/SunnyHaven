@@ -38,6 +38,7 @@
     "@types/prop-types": "^15.7.11",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/scheduler": "^0.16.8",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "typescript": "^5"
