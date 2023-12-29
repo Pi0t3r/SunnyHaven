@@ -24,24 +24,22 @@ export const CatToysList = () => {
     };
     fetchData();
   }, []);
-  return (
-    <Box>
-      <Heading as='h2'>Zabawki dla kotów</Heading>
-      {loading ? (
-        <Loading />
-      ) : (
-        <UnorderedList textAlign='center' listStyleType='none'>
-          {catToys.map((toy) => (
-            <ListItem
-              key={toy._id.toString()}
-              width='fit-content'
-              margin='15px auto'
-            >
-              <CardChakra data={toy} info='Toys'/>
-            </ListItem>
-          ))}
-        </UnorderedList>
-      )}
-    </Box>
-  );
+  return <Box>
+  <Heading as='h2'>Zabawki dla kotów</Heading>
+  {loading ? (
+    <Loading />
+  ) : (
+    <UnorderedList textAlign='center' listStyleType='none'>
+      {catToys.map((toy) => (
+        <ListItem
+          key={toy._id.toString()}
+          width='fit-content'
+          margin='15px auto'
+        >
+          <CardChakra data={toy} info='Toys'/>
+        </ListItem>
+      ))}
+    </UnorderedList>
+  )}
+</Box>
 };

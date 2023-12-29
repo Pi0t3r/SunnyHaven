@@ -1,8 +1,8 @@
 import {CatFood} from '@/pages/models/catFood.model';
 import {Box, Heading, UnorderedList, ListItem} from '@chakra-ui/react';
 import {useState, useEffect} from 'react';
-import { CardChakra } from './ui/Card';
-import { Loading } from './ui/Loading';
+import {CardChakra} from './ui/Card';
+import {Loading} from './ui/Loading';
 
 export const CatFoodList = () => {
   const [cats, setCats] = useState<CatFood[]>([]);

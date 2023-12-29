@@ -15,17 +15,17 @@ mongoose.connection.on('error', (err) => {
 mongoose.connection.on('connected', () => {
   console.log('Połączono z bazą danych');
 });
-export interface CatToys extends Document {
+export interface CatAccessories extends Document {
   _id: ObjectId;
   name: string;
   price: number;
   imageUrl: string;
-  stickLength?: number;
-  lineLength?: number;
   size?: string;
+  color?: string;
+  weight?: string;
 }
 
-const CatToysSchema = new Schema<CatToys>({
+const CatAccessoriesSchema = new Schema<CatAccessories>({
   _id: {
     type: mongoose.Types.ObjectId,
     required: true,
@@ -42,18 +42,21 @@ const CatToysSchema = new Schema<CatToys>({
     type: String,
     required: true,
   },
-  stickLength: {
-    type: Number,
-    required: false,
-  },
-  lineLength: {
-    type: Number,
-    required: false,
-  },
   size: {
+    type: String,
+    required: false,
+  },
+  color: {
+    type: String,
+    required: false,
+  },
+  weight: {
     type: String,
     required: false,
   },
 });
 
-const CatToys = model<CatToys>('CatToys', CatToysSchema);
+const CatAccessories = model<CatAccessories>(
+  'CatAccessories',
+  CatAccessoriesSchema
+);
