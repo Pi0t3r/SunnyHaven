@@ -1,51 +1,49 @@
 'use client';
-import {useEffect, useState} from 'react';
-import {Loading} from '@/app/components/ui/Loading';
-import {CatFood} from '@/pages/models/catFood.model';
-import {Box, Heading, UnorderedList, ListItem} from '@chakra-ui/react';
-import {CardChakra} from '@/app/components/ui/Card';
+import {Box, ButtonGroup, Button} from '@chakra-ui/react';
+import {CatFoodList} from '@/app/components/CatFoodList';
+import {CatToysList} from '@/app/components/CatToysList';
+import {useState} from 'react';
+import {CatAccesoriesList} from '@/app/components/CatAccesoriesList';
 const CatsPage = () => {
-  const [cats, setCats] = useState<CatFood[]>([]);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('/api/foodCat');
-        const data: CatFood[] = await response.json();
-
-        if (Array.isArray(data)) {
-          setCats(data);
-        } else {
-          console.error('Invalid data format:', data);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
+  const [currentList, setCurrentList] = useState('Food');
+  const renderSelectedList = () => {
+    switch (currentList) {
+      case 'Toys':
+        return <CatToysList />;
+        break;
+      case 'Accesories':
+        return <CatAccesoriesList />;
+        break;
+      default:
+        return <CatFoodList />;
+    }
+  };
   return (
-    <Box textAlign='center' padding={10}>
-      <Heading as='h2'>Karmy dla kotów</Heading>
-      {loading ? (
-        <Loading />
-      ) : (
-        <UnorderedList textAlign='center' listStyleType='none'>
-          {cats.map((cat) => (
-            <ListItem
-              key={cat._id.toString()}
-              width='fit-content'
-              margin='15px auto'
-            >
-              <CardChakra data={cat} />
-            </ListItem>
-          ))}
-        </UnorderedList>
-      )}
+    <Box textAlign='center'>
+      <ButtonGroup mt={10}>
+        <Button
+          variant='outline'
+          colorScheme='blue'
+          onClick={() => setCurrentList('Food')}
+        >
+          Karma
+        </Button>
+        <Button
+          variant='outline'
+          colorScheme='blue'
+          onClick={() => setCurrentList('Toys')}
+        >
+          Zabawki
+        </Button>
+        <Button
+          variant='outline'
+          colorScheme='blue'
+          onClick={() => setCurrentList('Accesories')}
+        >
+          Akcesoria
+        </Button>
+      </ButtonGroup>
+      {renderSelectedList()}
     </Box>
   );
 };

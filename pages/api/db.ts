@@ -9,10 +9,10 @@ const client = new MongoClient(uri, {
   },
 });
 
-export async function connectToDatabase(collectionName:string) {
+export async function connectToDatabase(databaseName:string,collectionName:string) {
   try {
     await client.connect();
-    return client.db("Cat").collection(collectionName);
+    return client.db(databaseName).collection(collectionName);
   } catch (error) {
     console.error('Error connecting to the database:', error);
     throw error;
