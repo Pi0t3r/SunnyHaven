@@ -1,6 +1,6 @@
 import mongoose, {Schema, model, Document, ObjectId} from 'mongoose';
 
-const dbURL = process.env.MONGODB_URI;
+const dbURL = process.env.MONGODB_URI || '';
 
 const options = {
   useNewUrlParser: true,
@@ -9,7 +9,7 @@ const options = {
 
 mongoose.connect(dbURL, options);
 mongoose.connection.on('error', (err) => {
-  console.error('Błąd połączenia z bazą danych.');
+  console.error('Błąd połączenia z bazą danych.', err);
 });
 
 mongoose.connection.on('connected', () => {

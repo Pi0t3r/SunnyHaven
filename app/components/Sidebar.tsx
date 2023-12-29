@@ -3,10 +3,7 @@ import Link from 'next/link';
 import {SidebarProps, SidebarLinkProps} from '../types/types';
 const SidebarLink: React.FC<SidebarLinkProps> = ({title, pathname}) => {
   return (
-    <Link
-      href={pathname}
-      color={pathname === pathname ? 'red.500' : ''}
-    >
+    <Link href={pathname} color={pathname === pathname ? 'red.500' : ''}>
       {title}
     </Link>
   );

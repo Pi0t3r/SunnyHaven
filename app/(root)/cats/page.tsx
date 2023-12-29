@@ -1,23 +1,9 @@
 'use client';
 import {useEffect, useState} from 'react';
-
+import {Loading} from '@/app/components/ui/Loading';
 import {CatFood} from '@/pages/models/catFood.model';
-import {
-  Box,
-  Text,
-  Heading,
-  Stack,
-  Card,
-  CardBody,
-  Divider,
-  CardFooter,
-  ButtonGroup,
-  Image,
-  UnorderedList,
-  Button,
-  ListItem,
-} from '@chakra-ui/react';
-import Link from 'next/link';
+import {Box, Heading, UnorderedList, ListItem} from '@chakra-ui/react';
+import {CardChakra} from '@/app/components/ui/Card';
 const CatsPage = () => {
   const [cats, setCats] = useState<CatFood[]>([]);
   const [loading, setLoading] = useState(true);
@@ -46,47 +32,16 @@ const CatsPage = () => {
     <Box textAlign='center' padding={10}>
       <Heading as='h2'>Karmy dla kotów</Heading>
       {loading ? (
-        <p>Loading...</p>
+        <Loading />
       ) : (
         <UnorderedList textAlign='center' listStyleType='none'>
           {cats.map((cat) => (
             <ListItem
               key={cat._id.toString()}
               width='fit-content'
-              margin='auto'
+              margin='15px auto'
             >
-                <Card maxW='sm'>
-                  <CardBody>
-                    <Image
-                      objectFit='cover'
-                      boxSize='200px'
-                      src={cat.imageUrl}
-                      alt={`${cat.name} image food`}
-                      borderRadius='lg'
-                      margin='auto'
-                    />
-                    <Stack mt='6' spacing='3'>
-                      <Heading size='md'>
-                        {cat.name} for {cat.ageCat}
-                      </Heading>
-                      <Text fontSize='sm'>{cat.desc}</Text>
-                      <Text color='blue.600' fontSize='2xl'>
-                        {cat.price} zł/szt
-                      </Text>
-                    </Stack>
-                  </CardBody>
-                  <Divider />
-                  <CardFooter>
-                    <ButtonGroup spacing='2'>
-                      <Button variant='solid' colorScheme='blue'>
-                        Buy now
-                      </Button>
-                      <Button variant='ghost' colorScheme='blue'>
-                        Add to cart
-                      </Button>
-                    </ButtonGroup>
-                  </CardFooter>
-                </Card>
+              <CardChakra data={cat} />
             </ListItem>
           ))}
         </UnorderedList>
