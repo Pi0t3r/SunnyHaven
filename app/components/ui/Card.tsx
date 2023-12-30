@@ -8,9 +8,28 @@ import {
   Button,
   Image,
   Text,
+  useToast,
 } from '@chakra-ui/react';
+import {useCart} from '@/context/CartContext';
 
 export const CardChakra: React.FC<Record<string, any>> = ({data, info}) => {
+  const {addToCart} = useCart();
+  const toast = useToast();
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: data.id,
+      name: data.name,
+      price: data.price,
+      imageUrl: data.imageUrl,
+    });
+    toast({
+      title: 'Product added to your cart.',
+      status: 'success',
+      duration: 5000,
+      isClosable: true,
+    });
+  };
   return (
     <Card maxW='sm'>
       <CardBody>
@@ -65,7 +84,7 @@ export const CardChakra: React.FC<Record<string, any>> = ({data, info}) => {
       </CardBody>
       <Divider />
       <CardFooter>
-        <Button variant='solid' colorScheme='blue'>
+        <Button variant='solid' colorScheme='blue' onClick={handleAddToCart}>
           Add to cart
         </Button>
       </CardFooter>

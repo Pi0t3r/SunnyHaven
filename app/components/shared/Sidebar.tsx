@@ -6,7 +6,7 @@ import {useState} from 'react';
 import {PL, US} from 'country-flag-icons/react/3x2';
 import {NavItems} from './NavItems';
 import {usePathname} from 'next/navigation';
-const LinksSidebar = [
+export const LinksSidebar = [
   {
     title: 'Home',
     pathname: '/',
