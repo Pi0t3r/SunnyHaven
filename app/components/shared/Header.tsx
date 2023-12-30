@@ -29,27 +29,33 @@ export const Header = () => {
             alt={''}
           />
         </Box>
-        <SignedIn>
-          <chakra.nav display={{base: 'none', sm: 'block'}}>
-            <NavItems />
-          </chakra.nav>
-        </SignedIn>
-        <ButtonGroup
-          zIndex='100'
-          display={{base: 'flex', sm: 'none'}}
-          alignItems='center'
-        >
-          <SignedOut>
-            <Button borderRadius='100%'>
-              <Link href="/sign-in">
-                Login
-              </Link>
-            </Button>
-          </SignedOut>
-          <Button variant='ghost' onClick={() => setOpenSidebar(!openSidebar)}>
-            {openSidebar ? <CloseIcon /> : <HamburgerIcon />}
+        <Box display='flex' alignItems='center' width='25%' justifyContent='space-around'>
+          <Button variant='ghost' zIndex={51}>
+            <FaBasketShopping />
           </Button>
-        </ButtonGroup>
+          <SignedIn>
+            <chakra.nav display={{base: 'none', sm: 'flex'}}>
+              <NavItems />
+            </chakra.nav>
+          </SignedIn>
+          <ButtonGroup
+            zIndex='100'
+            display={{base: 'flex', sm: 'none'}}
+            alignItems='center'
+          >
+            <SignedOut>
+              <Button borderRadius='100%'>
+                <Link href='/sign-in'>Login</Link>
+              </Button>
+            </SignedOut>
+            <Button
+              variant='ghost'
+              onClick={() => setOpenSidebar(!openSidebar)}
+            >
+              {openSidebar ? <CloseIcon /> : <HamburgerIcon />}
+            </Button>
+          </ButtonGroup>
+        </Box>
       </Box>
       <Sidebar openSidebar={openSidebar} />
     </Box>

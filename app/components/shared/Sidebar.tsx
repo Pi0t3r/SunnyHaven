@@ -1,22 +1,40 @@
-import {chakra, List, ListItem, Button} from '@chakra-ui/react';
+import {chakra, List, ListItem, Button, Stack} from '@chakra-ui/react';
 import Link from 'next/link';
-import {SidebarProps, SidebarLinkProps} from '../../types/types';
-import {SignedOut, UserButton} from '@clerk/nextjs';
+import {SidebarProps} from '../../types/types';
+import {SignedIn, SignedOut} from '@clerk/nextjs';
 import {useState} from 'react';
 import {PL, US} from 'country-flag-icons/react/3x2';
-const SidebarLink: React.FC<SidebarLinkProps> = ({title, pathname}) => {
-  return (
-    <Link href={pathname} color={pathname === pathname ? 'red.500' : ''}>
-      {title}
-    </Link>
-  );
-};
+import {NavItems} from './NavItems';
+import {usePathname} from 'next/navigation';
+const LinksSidebar = [
+  {
+    title: 'Home',
+    pathname: '/',
+  },
+  {
+    title: 'Cats',
+    pathname: '/cats',
+  },
+  {
+    title: 'Dogs',
+    pathname: '/dogs',
+  },
+  {
+    title: 'About us',
+    pathname: '/aboutUs',
+  },
+  {
+    title: 'Contact',
+    pathname: '/contact',
+  },
+];
 
 export const Sidebar: React.FC<SidebarProps> = ({openSidebar}) => {
   const [language, setLanguage] = useState('PL');
   const toggleLanguage = () => {
     setLanguage((prevLanguage) => (prevLanguage === 'PL' ? 'US' : 'PL'));
   };
+  const pathname = usePathname();
   return (
     <chakra.aside
       position='fixed'
@@ -30,42 +48,53 @@ export const Sidebar: React.FC<SidebarProps> = ({openSidebar}) => {
       padding='20px'
       zIndex={50}
     >
-      <UserButton />
-      <List spacing={5} marginTop='50px'>
-        <ListItem cursor='pointer'>
-          <SidebarLink title='Dom' pathname='/' />
-        </ListItem>
-        <ListItem cursor='pointer'>
-          <SidebarLink title='Koty' pathname='/cats' />
-        </ListItem>
-        <ListItem cursor='pointer'>
-          <SidebarLink title='Psy' pathname='/dogs' />
-        </ListItem>
-        <ListItem>
-          <SidebarLink pathname='/aboutUs' title='O nas' />
-        </ListItem>
-        <ListItem>
-          <SidebarLink pathname='/contact' title='Kontakt' />
-        </ListItem>
-      </List>
-      <List>
-        <Button variant='ghost' onClick={toggleLanguage}>
-          {language === 'PL' ? (
-            <PL title='Poland' width='30px' />
-          ) : (
-            <US title='United States' width='30px' />
-          )}
-        </Button>
-      </List>
-      <List>
-        <ListItem>
-          <SignedOut>
-            <Button>
-              <Link href='/sign-in'>Login</Link>
-            </Button>
-          </SignedOut>
-        </ListItem>
-      </List>
+      {' '}
+      <Stack
+        position='absolute'
+        top='75px'
+        width='100%'
+        left={0}
+        display='grid'
+        placeItems='center'
+      >
+        <SignedIn>
+          <chakra.nav>
+            <NavItems />
+          </chakra.nav>
+        </SignedIn>
+        <List spacing={5} marginTop='50px'>
+          {LinksSidebar.map((link) => {
+            const isActive = pathname === link.pathname;
+            return (
+              <ListItem
+                key={link.pathname}
+                cursor='pointer'
+                color={isActive ? 'red.500' : ''}
+              >
+                <Link href={link.pathname}>{link.title}</Link>
+              </ListItem>
+            );
+          })}
+        </List>
+        <List>
+          <Button variant='ghost' onClick={toggleLanguage}>
+            {language === 'PL' ? (
+              <PL title='Poland' width='30px' />
+            ) : (
+              <US title='United States' width='30px' />
+            )}
+          </Button>
+        </List>
+        <List>
+          <ListItem>
+            <SignedOut>
+              <Button>
+                <Link href='/sign-in'>Login</Link>
+              </Button>
+            </SignedOut>
+          </ListItem>
+        </List>
+      </Stack>
     </chakra.aside>
   );
 };

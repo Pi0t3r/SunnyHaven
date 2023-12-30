@@ -4,9 +4,6 @@ interface commonProps {
 export interface SidebarProps {
   openSidebar: boolean;
 }
-export interface SidebarLinkProps extends commonProps {
-  pathname: string;
-}
 
 export interface InfoProps extends commonProps {
   desc: string;
