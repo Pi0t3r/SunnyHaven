@@ -1,9 +1,9 @@
 'use client';
 import {Box, ButtonGroup, Button} from '@chakra-ui/react';
-import {CatFoodList} from '@/app/components/CatFoodList';
-import {CatToysList} from '@/app/components/CatToysList';
+import {CatFoodList} from '@/app/components/ui/CatFoodList';
+import {CatToysList} from '@/app/components/ui/CatToysList';
 import {useState} from 'react';
-import {CatAccesoriesList} from '@/app/components/CatAccesoriesList';
+import {CatAccesoriesList} from '@/app/components/ui/CatAccesoriesList';
 const CatsPage = () => {
   const [currentList, setCurrentList] = useState('Food');
   const renderSelectedList = () => {
@@ -19,7 +19,7 @@ const CatsPage = () => {
     }
   };
   return (
-    <Box textAlign='center'>
+    <Box textAlign='center' marginTop={20}>
       <ButtonGroup mt={10}>
         <Button
           variant='outline'

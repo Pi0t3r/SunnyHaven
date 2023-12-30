@@ -1,5 +1,5 @@
 import {Box, Heading, Stack, Text, Image} from '@chakra-ui/react';
-import {ProductProps} from '../types/types';
+import {ProductProps} from '../../types/types';
 const Product: React.FC<ProductProps> = ({title, price, src}) => {
   return (
     <Box border='1px solid black' overflow='hidden'>

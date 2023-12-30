@@ -1,8 +1,8 @@
 import {Box, Heading, ListItem, UnorderedList} from '@chakra-ui/react';
 import {useState, useEffect} from 'react';
-import {Loading} from './ui/Loading';
+import {Loading} from './Loading';
 import {CatAccessories} from '@/pages/models/catAccesories.model';
-import {CardChakra} from './ui/Card';
+import {CardChakra} from './Card';
 
 export const CatAccesoriesList = () => {
   const [catAccesories, setCatAccesories] = useState<CatAccessories[]>([]);
@@ -26,7 +26,7 @@ export const CatAccesoriesList = () => {
     fetchData();
   }, []);
   return (
-    <Box>
+    <Box textAlign='center' padding={10}>
       <Heading as='h2'>Akcesoria dla kotów</Heading>
       {loading ? (
         <Loading />
@@ -38,7 +38,7 @@ export const CatAccesoriesList = () => {
               width='fit-content'
               margin='15px auto'
             >
-              <CardChakra data={acc} info='Accessories'/>
+              <CardChakra data={acc} info='Accessories' />
             </ListItem>
           ))}
         </UnorderedList>

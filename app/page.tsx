@@ -1,11 +1,11 @@
 'use client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Box, Heading, chakra} from '@chakra-ui/react';
-import {BestSellers} from './components/BestSellers';
-import {CategoryButtons} from './components/CategoryButtons';
-import {News} from './components/News';
-import {Newsletter} from './components/Newsletter';
-import {Promotion} from './components/Promotion';
+import {BestSellers} from './components/ui/BestSellers';
+import {CategoryButtons} from './components/ui/CategoryButtons';
+import {News} from './components/ui/News';
+import {Newsletter} from './components/ui/Newsletter';
+import {Promotion} from './components/ui/Promotion';
 import CarouselComponent from '@/app/components/ui/Carousel';
 export default function Home() {
   return (

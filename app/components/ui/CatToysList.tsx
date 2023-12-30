@@ -1,8 +1,8 @@
 import {Box, Heading, ListItem, UnorderedList} from '@chakra-ui/react';
 import {useState, useEffect} from 'react';
-import {Loading} from './ui/Loading';
+import {Loading} from './Loading';
 import {CatToys} from '@/pages/models/catToys.model';
-import {CardChakra} from './ui/Card';
+import {CardChakra} from './Card';
 export const CatToysList = () => {
   const [catToys, setCatToys] = useState<CatToys[]>([]);
   const [loading, setLoading] = useState(true);
@@ -24,22 +24,26 @@ export const CatToysList = () => {
     };
     fetchData();
   }, []);
-  return <Box>
-  <Heading as='h2'>Zabawki dla kotów</Heading>
-  {loading ? (
-    <Loading />
-  ) : (
-    <UnorderedList textAlign='center' listStyleType='none'>
-      {catToys.map((toy) => (
-        <ListItem
-          key={toy._id.toString()}
-          width='fit-content'
-          margin='15px auto'
-        >
-          <CardChakra data={toy} info='Toys'/>
-        </ListItem>
-      ))}
-    </UnorderedList>
-  )}
-</Box>
+  return (
+    <Box>
+      <Heading as='h2' padding={10}>
+        Zabawki dla kotów
+      </Heading>
+      {loading ? (
+        <Loading />
+      ) : (
+        <UnorderedList textAlign='center' listStyleType='none'>
+          {catToys.map((toy) => (
+            <ListItem
+              key={toy._id.toString()}
+              width='fit-content'
+              margin='15px auto'
+            >
+              <CardChakra data={toy} info='Toys' />
+            </ListItem>
+          ))}
+        </UnorderedList>
+      )}
+    </Box>
+  );
 };

@@ -1,6 +1,9 @@
-import {chakra, List, ListItem, Link as ChakraLink} from '@chakra-ui/react';
+import {chakra, List, ListItem, Button} from '@chakra-ui/react';
 import Link from 'next/link';
-import {SidebarProps, SidebarLinkProps} from '../types/types';
+import {SidebarProps, SidebarLinkProps} from '../../types/types';
+import {SignedOut, UserButton} from '@clerk/nextjs';
+import {useState} from 'react';
+import {PL, US} from 'country-flag-icons/react/3x2';
 const SidebarLink: React.FC<SidebarLinkProps> = ({title, pathname}) => {
   return (
     <Link href={pathname} color={pathname === pathname ? 'red.500' : ''}>
@@ -10,6 +13,10 @@ const SidebarLink: React.FC<SidebarLinkProps> = ({title, pathname}) => {
 };
 
 export const Sidebar: React.FC<SidebarProps> = ({openSidebar}) => {
+  const [language, setLanguage] = useState('PL');
+  const toggleLanguage = () => {
+    setLanguage((prevLanguage) => (prevLanguage === 'PL' ? 'US' : 'PL'));
+  };
   return (
     <chakra.aside
       position='fixed'
@@ -23,6 +30,7 @@ export const Sidebar: React.FC<SidebarProps> = ({openSidebar}) => {
       padding='20px'
       zIndex={50}
     >
+      <UserButton />
       <List spacing={5} marginTop='50px'>
         <ListItem cursor='pointer'>
           <SidebarLink title='Dom' pathname='/' />
@@ -40,23 +48,22 @@ export const Sidebar: React.FC<SidebarProps> = ({openSidebar}) => {
           <SidebarLink pathname='/contact' title='Kontakt' />
         </ListItem>
       </List>
-      <List
-        position='absolute'
-        bottom='20px'
-        left='0%'
-        display='flex'
-        width='100%'
-        justifyContent='space-between'
-        padding='0 5px'
-        flexDirection='column'
-        spacing={5}
-        alignItems='center'
-      >
+      <List>
+        <Button variant='ghost' onClick={toggleLanguage}>
+          {language === 'PL' ? (
+            <PL title='Poland' width='30px' />
+          ) : (
+            <US title='United States' width='30px' />
+          )}
+        </Button>
+      </List>
+      <List>
         <ListItem>
-          <SidebarLink title='Zaloguj się' pathname='/login' />
-        </ListItem>
-        <ListItem>
-          <SidebarLink title='Zarejestruj się' pathname='/register' />
+          <SignedOut>
+            <Button>
+              <Link href='/sign-in'>Login</Link>
+            </Button>
+          </SignedOut>
         </ListItem>
       </List>
     </chakra.aside>

@@ -1,5 +1,5 @@
 import {Box, Button, Image, Stack, Text} from '@chakra-ui/react';
-import {ImageIconButtonProps} from '../types/types';
+import {ImageIconButtonProps} from '../../types/types';
 import Link from 'next/link';
 
 const ImageIconButton: React.FC<ImageIconButtonProps> = ({

@@ -1,9 +1,9 @@
 import {Box, Heading, Stack, Text, Image} from '@chakra-ui/react';
-import {InfoProps} from '../types/types';
+import {InfoProps} from '../../types/types';
 import {useState, useEffect} from 'react';
 const Info: React.FC<InfoProps> = ({title, desc}) => {
   return (
-    <Box textAlign='center'>
+    <Box>
       <Text
         display='inline'
         textTransform='uppercase'
@@ -31,7 +31,7 @@ const Info: React.FC<InfoProps> = ({title, desc}) => {
 
 export const Promotion = () => {
   return (
-    <Box padding={5}>
+    <Box padding={5} textAlign='center'>
       <Heading as={'h3'}>Aktualne promocje</Heading>
       <Stack>
         <Stack>

@@ -41,3 +41,7 @@ export type UpdateUserParams = {
   lastName: string;
   username: string;
 };
+
+export type LayoutProps = {
+  children: React.ReactNode;
+};

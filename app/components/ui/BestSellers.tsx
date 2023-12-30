@@ -1,5 +1,5 @@
 import {Box, Heading, Stack, Text, Image} from '@chakra-ui/react';
-import {ItemProps} from '../types/types';
+import {ItemProps} from '../../types/types';
 
 const Item: React.FC<ItemProps> = ({title, price, src}) => {
   return (
