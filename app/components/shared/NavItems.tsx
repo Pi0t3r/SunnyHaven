@@ -2,8 +2,10 @@ import {Box, List, ListItem} from '@chakra-ui/react';
 import {LinksSidebar} from './Sidebar';
 import {usePathname} from 'next/navigation';
 import Link from 'next/link';
-export const NavItems = () => {
+
+export function NavItems() {
   const pathname = usePathname();
+  
   return (
     <Box width='350px' display={{base: 'none', sm: 'block'}}>
       <List
@@ -28,4 +30,4 @@ export const NavItems = () => {
       </List>
     </Box>
   );
-};
+}

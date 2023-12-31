@@ -2,6 +2,7 @@ import {useCart} from '@/context/CartContext';
 import {
   Box,
   Button,
+  Divider,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -13,9 +14,12 @@ import {
 } from '@chakra-ui/react';
 import {DeleteIcon} from '@chakra-ui/icons';
 import Image from 'next/image';
-import { addToCart, clearCart, removeFromCart } from '@/pages/models/cartSchema.model'
-export const ModalComponent = ({OpenModal, onClose}) => {
-  const {cart} = useCart();
+interface ModalComponentProps {
+  OpenModal: any;
+  onClose: () => void;
+}
+export function ModalComponent({OpenModal, onClose}: ModalComponentProps) {
+  const {cart, removeFromCart, clearCart} = useCart();
   return (
     <Modal isOpen={OpenModal} onClose={onClose}>
       <ModalOverlay />
@@ -23,38 +27,39 @@ export const ModalComponent = ({OpenModal, onClose}) => {
         <ModalHeader>Your Cart</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          {cart.map((item) => {
-            if (cart.length === 0) {
-              return <Text key={item.id}>Cart is empty</Text>;
-            } else {
-              return (
-                <Box
-                  key={item.id}
-                  display='flex'
-                  background='red'
-                  justifyContent='space-between'
-                  alignItems='center'
-                >
-                  <Image
-                    src={item.imageUrl}
-                    alt={`${item.name} image product`}
-                    width={100}
-                    height={100}
-                  />
-                  <Box display='flex' flexDirection='column'>
-                    <Text>{item.name}</Text>
-                    <Text>{item.price} zł</Text>
-                  </Box>
-                  <Button>
-                    <DeleteIcon />
-                  </Button>
+          {cart.length === 0 ? (
+            <Text>Cart is empty</Text>
+          ) : (
+            cart.map((item) => (
+              <Box
+                key={item.id}
+                display='flex'
+                justifyContent='space-between'
+                alignItems='center'
+                border='1px solid black'
+                m={2}
+                p={2}
+              >
+                <Image
+                  src={item.imageUrl}
+                  alt={`${item.name} image product`}
+                  width={100}
+                  height={100}
+                />
+                <Box display='flex' flexDirection='column'>
+                  <Text>{item.name}</Text>
+                  <Divider orientation='horizontal' />
+                  <Text>{item.price} zł</Text>
                 </Box>
-              );
-            }
-          })}
+                <Button onClick={() => removeFromCart(item.imageUrl)}>
+                  <DeleteIcon />
+                </Button>
+              </Box>
+            ))
+          )}
         </ModalBody>
-
         <ModalFooter>
+          <Button onClick={() => clearCart()}>Clear Cart</Button>
           <Button colorScheme='blue' mr={3} onClick={onClose}>
             Close
           </Button>
@@ -63,4 +68,4 @@ export const ModalComponent = ({OpenModal, onClose}) => {
       </ModalContent>
     </Modal>
   );
-};
+}

@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 import {Inter} from 'next/font/google';
-import {ChakraProvider} from '@chakra-ui/react';
+import {CSSReset, ChakraProvider, Container} from '@chakra-ui/react';
 import {ClerkProvider} from '@clerk/nextjs';
 import {Header} from '@/app/components/shared/Header';
 import {Footer} from '@/app/components/shared/Footer';
@@ -13,29 +13,30 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <ClerkProvider>
-      <CartProvider>
-        <html lang='en'>
+    <html lang='en'>
+      <ClerkProvider>
+        <CartProvider>
           <body className={inter.className}>
             <ChakraProvider>
+              <CSSReset />
               <header>
                 <Header />
               </header>
 
-              <main
+              <Container
                 style={{
                   marginTop: '100px',
                 }}
               >
                 {children}
-              </main>
+              </Container>
               <footer>
                 <Footer />
               </footer>
             </ChakraProvider>
           </body>
-        </html>
-      </CartProvider>
-    </ClerkProvider>
+        </CartProvider>
+      </ClerkProvider>
+    </html>
   );
 }

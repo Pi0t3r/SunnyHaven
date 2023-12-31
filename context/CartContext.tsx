@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   price: number;
   imageUrl: string;
@@ -17,7 +17,7 @@ interface Product {
 interface CartContextProps {
   cart: Product[];
   addToCart: (product: Product) => void;
-  removeFromCart: (productId: number) => void;
+  removeFromCart: (productId: string) => void;
   clearCart: () => void;
 }
 
@@ -43,6 +43,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({children}) => {
   useEffect(() => {
     try {
       localStorage.setItem('cart', JSON.stringify(cart));
+      console.log('Cart saved to localStorage: ', cart);
     } catch (error) {
       console.error('Error saving to localStorage:', error);
     }
@@ -51,9 +52,9 @@ export const CartProvider: React.FC<CartProviderProps> = ({children}) => {
     setCart((prevCart) => [...prevCart, product]);
   };
 
-  const removeFromCart = (productId: number) => {
+  const removeFromCart = (imageUrl: string) => {
     setCart((prevCart) =>
-      prevCart.filter((product) => product.id !== productId)
+      prevCart.filter((product) => product.imageUrl !== imageUrl)
     );
   };
 
