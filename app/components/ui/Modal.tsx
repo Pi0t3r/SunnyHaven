@@ -32,7 +32,7 @@ export function ModalComponent({OpenModal, onClose}: ModalComponentProps) {
           ) : (
             cart.map((item) => (
               <Box
-                key={item.id}
+                key={item._id}
                 display='flex'
                 justifyContent='space-between'
                 alignItems='center'
@@ -50,8 +50,10 @@ export function ModalComponent({OpenModal, onClose}: ModalComponentProps) {
                   <Text>{item.name}</Text>
                   <Divider orientation='horizontal' />
                   <Text>{item.price} zł</Text>
+                  <Text>{item.count !== undefined ? item.count : 1}</Text>
+
                 </Box>
-                <Button onClick={() => removeFromCart(item.imageUrl)}>
+                <Button onClick={() => removeFromCart(item._id)}>
                   <DeleteIcon />
                 </Button>
               </Box>
