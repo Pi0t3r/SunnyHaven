@@ -2,6 +2,7 @@ import {useCart} from '@/context/CartContext';
 import {
   Box,
   Button,
+  ButtonGroup,
   Divider,
   Modal,
   ModalBody,
@@ -19,7 +20,22 @@ interface ModalComponentProps {
   onClose: () => void;
 }
 export function ModalComponent({OpenModal, onClose}: ModalComponentProps) {
-  const {cart, removeFromCart, clearCart} = useCart();
+  const {
+    cart,
+    removeFromCart,
+    clearCart,
+    handleDecreaseQuantity,
+    handleIncreaseQuantity,
+  } = useCart();
+
+  const updateTotalSum = () => {
+    const totalSum = cart.reduce(
+      (sum, item) => sum + item.price * item.quantity,
+      0
+    );
+    return totalSum;
+  };
+
   return (
     <Modal isOpen={OpenModal} onClose={onClose}>
       <ModalOverlay />
@@ -50,17 +66,39 @@ export function ModalComponent({OpenModal, onClose}: ModalComponentProps) {
                   <Text>{item.name}</Text>
                   <Divider orientation='horizontal' />
                   <Text>{item.price} zł</Text>
-                  <Text>{item.count !== undefined ? item.count : 1}</Text>
-
+                  <Text>{item._id}</Text>
+                  <Text>Quantity: {item.quantity}</Text>
                 </Box>
-                <Button onClick={() => removeFromCart(item._id)}>
-                  <DeleteIcon />
-                </Button>
+                <ButtonGroup>
+                  <Button
+                    onClick={() => handleIncreaseQuantity(item.imageUrl)}
+                    variant='outline'
+                    colorScheme='blue'
+                    size='sm'
+                    mt='2'
+                  >
+                    +
+                  </Button>
+                  <Button
+                    onClick={() => handleDecreaseQuantity(item.imageUrl)}
+                    variant='outline'
+                    colorScheme='red'
+                    size='sm'
+                    mt='2'
+                    isDisabled={item.quantity <= 1}
+                  >
+                    -
+                  </Button>
+                  <Button onClick={() => removeFromCart(item.imageUrl)}>
+                    <DeleteIcon />
+                  </Button>
+                </ButtonGroup>
               </Box>
             ))
           )}
         </ModalBody>
-        <ModalFooter>
+        <ModalFooter p={10}>
+          <Text fontWeight='bold'>Total: {updateTotalSum().toFixed(2)} zł</Text>
           <Button onClick={() => clearCart()}>Clear Cart</Button>
           <Button colorScheme='blue' mr={3} onClick={onClose}>
             Close

@@ -18,10 +18,11 @@ export const CardChakra: React.FC<Record<string, any>> = ({data, info}) => {
 
   const handleAddToCart = () => {
     addToCart({
-      id: data.id,
+      _id: data.id,
       name: data.name,
       price: data.price,
       imageUrl: data.imageUrl,
+      quantity: 1,
     });
     toast({
       title: 'Product added to your cart.',
