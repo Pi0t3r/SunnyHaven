@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react';
 import {DeleteIcon} from '@chakra-ui/icons';
 import Image from 'next/image';
+import Link from 'next/link';
 interface ModalComponentProps {
   OpenModal: any;
   onClose: () => void;
@@ -103,7 +104,9 @@ export function ModalComponent({OpenModal, onClose}: ModalComponentProps) {
           <Button colorScheme='blue' mr={3} onClick={onClose}>
             Close
           </Button>
-          <Button variant='ghost'>Go to payment</Button>
+          <Button variant='ghost' as={Link} href='/basket'>
+            Go to payment
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
