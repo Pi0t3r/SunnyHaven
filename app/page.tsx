@@ -11,6 +11,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import {useState} from 'react';
+import {CatFoodList} from './components/CatFood';
 export default function Home() {
   const [value, setValue] = useState('1');
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -41,7 +42,8 @@ export default function Home() {
           ))}
         </ul>
       </section>
-      <section className='bg-red-500'>
+      <section>
+        <h2>Pet Foodies</h2>
         <TabContext value={value}>
           <div>
             <TabList
@@ -53,12 +55,14 @@ export default function Home() {
               <Tab value='1' label='All' />
               <Tab value='2' label='Cat' />
               <Tab value='3' label='Dog' />
-              <Tab value='4' label='Bird'/>
+              <Tab value='4' label='Bird' />
               <Tab value='5' label='Fish' />
             </TabList>
           </div>
           <TabPanel value='1'>.</TabPanel>
-          <TabPanel value='2'>..</TabPanel>
+          <TabPanel value='2'>
+            <CatFoodList />
+          </TabPanel>
           <TabPanel value='3'>...</TabPanel>
         </TabContext>
       </section>
