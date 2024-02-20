@@ -14,6 +14,7 @@ const config: Config = {
         banner: '#F9F3EC',
         'creame-white': '#FEF5EA',
         'gray-color': '#908F8D',
+        'light-gray': '#F8F8F8',
       },
     },
   },
