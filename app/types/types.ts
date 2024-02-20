@@ -1,4 +1,4 @@
-import {StaticImport} from 'next/dist/shared/lib/get-img-props';
+import {StaticImageData} from 'next/image';
 
 export interface commonProps {
   title: string;
@@ -6,13 +6,13 @@ export interface commonProps {
 
 export interface iSidebar {
   isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
 }
 export interface iBurgerMenu {
   open: boolean;
   handleClick: () => void;
 }
 export interface iSectionBackground {
-  image: StaticImport;
   children: React.ReactNode;
 }
 
@@ -24,4 +24,19 @@ export interface iCard {
   isSold: boolean;
   isDiscount: boolean;
   discountPrice?: number;
+}
+export interface iCarouselImage {
+  items: {
+    src: StaticImageData;
+    title: string;
+    desc: string;
+    bolderDesc?: string;
+  }[];
+}
+
+export interface iCarouselText {
+  items: {
+    text: string;
+    author: string;
+  }[];
 }

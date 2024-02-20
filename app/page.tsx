@@ -1,81 +1,58 @@
 'use client';
-import BannerImage from '@/public/assets/img/banner-img.png';
-import BannerImage2 from '@/public/assets/img/banner-img2.png';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import {Tab} from '@mui/material';
-import Image from 'next/image';
-import {useState} from 'react';
-import {CatFoodList} from './components/Foodies Section/CatFood';
-import {DogFoodList} from './components/Foodies Section/DogFood';
-import {iconsList} from './components/data/IconsListData';
-import {Banner} from './components/section/Banner/Banner';
+import {Banner} from './components/data/BannerData';
+import {QuoteData} from './components/data/QuoteData';
+import {IconsList} from './components/section/IconList/IconList';
+import {PetFoodSection} from './components/section/PetFoodSection/PetFoodSection';
 import {Sale} from './components/section/Sale/Sale';
-
 import {SectionBackground} from './components/section/Section';
+import {CarouselImage, CarouselText} from './components/ui/Carousel';
+import {Logo} from './components/ui/Logo';
+import {Card} from './components/ui/Card';
+import {Button} from './components/ui/Button';
 export default function Home() {
-  const [value, setValue] = useState('1');
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
   return (
     <main>
-      <SectionBackground image={BannerImage}>
-        <Banner />
+      <Logo />
+      <SectionBackground>
+        <CarouselImage items={Banner} />
       </SectionBackground>
-      <section>
-        <ul className='flex flex-wrap py-20 justify-center gap-12'>
-          {iconsList.map((icon, index) => (
-            <li key={index}>
-              <div className='cursor-pointer'>
-                <Image
-                  src={icon.icon}
-                  alt={icon.alt}
-                  width={70}
-                  height={70}
-                  className='fill-white'
-                />
-                <p className='capitalize text-xl text-center mt-5'>
-                  {icon.title}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
+      <IconsList />
+      <section className='px-10 my-10'>
+        <div className='mb-10'>
+          <h3 className='capitalize text-5xl'>pet clothing</h3>
+          <Button />
+        </div>
+        <Card
+          name='Grey hoodie'
+          price={18}
+          isNew={true}
+          isDiscount={false}
+          isSold={false}
+          src='https://demo.templatesjungle.com/waggy/images/item1.jpg'
+        />
       </section>
-      <section className='px-5'>
-        <h2>Pet Foodies</h2>
-        <TabContext value={value}>
-          <div>
-            <TabList
-              onChange={handleChange}
-              variant='scrollable'
-              scrollButtons
-              allowScrollButtonsMobile
-            >
-              <Tab value='1' label='All' />
-              <Tab value='2' label='Cat' />
-              <Tab value='3' label='Dog' />
-              <Tab value='4' label='Bird' />
-              <Tab value='5' label='Fish' />
-            </TabList>
-          </div>
-          <TabPanel value='1'>
-            <CatFoodList />
-            <DogFoodList />
-          </TabPanel>
-          <TabPanel value='2'>
-            <CatFoodList />
-          </TabPanel>
-          <TabPanel value='3'>
-            <DogFoodList />
-          </TabPanel>
-        </TabContext>
-      </section>
-      <SectionBackground image={BannerImage2}>
+      <PetFoodSection />
+      <SectionBackground>
         <Sale />
       </SectionBackground>
+      <section className='p-12'>
+        <CarouselText items={QuoteData} />
+      </section>
+      <section className='px-10 my-10'>
+        <div className='mb-10'>
+          <h3 className='capitalize text-5xl'>pet clothing</h3>
+          <Button />
+        </div>
+        <Card
+          name='Grey hoodie'
+          price={18}
+          isNew={false}
+          isDiscount={false}
+          isSold={false}
+          src='https://demo.templatesjungle.com/waggy/images/item5.jpg'
+        />
+      </section>
+      <section></section>
     </main>
   );
 }

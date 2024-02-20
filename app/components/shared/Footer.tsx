@@ -1,4 +1,4 @@
 export default function Footer() {
-    return <footer></footer>;
+    return <footer id='contact'>Footer</footer>;
   }
   

@@ -13,6 +13,7 @@ const config: Config = {
         primary: '#DEAD6F',
         banner: '#F9F3EC',
         'creame-white': '#FEF5EA',
+        'gray-color': '#908F8D',
       },
     },
   },

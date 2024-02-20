@@ -8,25 +8,30 @@ export const iconsList = [
     icon: Steak,
     alt: 'steak svg outlined',
     title: 'Foodies',
+    href:'#Foodies'
   },
   {
     icon: Bird,
     alt: 'bird svg outlined',
     title: 'Bird shop',
+    href:'/BirdShop',
   },
   {
     icon: Dog,
     alt: 'dog svg outlined',
     title: 'dog shop',
+    href:'/DogShop',
   },
   {
     icon: Fish,
     alt: 'fish svg outlined',
     title: 'fish shop',
+    href:'/FishShop',
   },
   {
     icon: Cat,
     alt: 'cat svg outlined',
     title: 'cat shop',
+    href:'/CatShop',
   },
 ];

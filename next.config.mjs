@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['unizoo.pl'],
+    domains: ['unizoo.pl', 'demo.templatesjungle.com'],
   },
 };
 

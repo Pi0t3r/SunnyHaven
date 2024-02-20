@@ -2,7 +2,7 @@ import Image from 'next/image';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import {iCard, commonProps} from '@/app/types/types';
 
-const InfoCard = ({title}: commonProps) => {
+export const InfoCard = ({title}: commonProps) => {
   return (
     <div className='absolute top-5 left-5 border-[1px] bg-primary px-4 py-1 rounded-md'>
       <p className='uppercase'>{title}</p>
@@ -26,11 +26,11 @@ export const Card = ({
       <Image
         src={src}
         alt=''
-        width={200}
-        height={200}
-        className='mt-14 mx-auto'
+        width={400}
+        height={400}
+        className='mt-14 mx-auto rounded-lg'
       />
-      <div className='text-2xl'>
+      <div className='text-2xl mt-10'>
         <p>{name}</p>
         {isDiscount ? (
           <p className='text-primary'>
