@@ -1,17 +1,19 @@
 'use client';
-import Image from 'next/image';
 import BannerImage from '@/public/assets/img/banner-img.png';
 import BannerImage2 from '@/public/assets/img/banner-img2.png';
-import {iconsList} from './components/data/IconsListData';
-import {SectionBackground} from './components/section/Section';
-import {Banner} from './components/section/Banner/Banner';
-import {Sale} from './components/section/Sale/Sale';
-import {Tab} from '@mui/material';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import {Tab} from '@mui/material';
+import Image from 'next/image';
 import {useState} from 'react';
 import {CatFoodList} from './components/Foodies Section/CatFood';
+import {DogFoodList} from './components/Foodies Section/DogFood';
+import {iconsList} from './components/data/IconsListData';
+import {Banner} from './components/section/Banner/Banner';
+import {Sale} from './components/section/Sale/Sale';
+
+import {SectionBackground} from './components/section/Section';
 export default function Home() {
   const [value, setValue] = useState('1');
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -61,11 +63,14 @@ export default function Home() {
           </div>
           <TabPanel value='1'>
             <CatFoodList />
+            <DogFoodList />
           </TabPanel>
           <TabPanel value='2'>
             <CatFoodList />
           </TabPanel>
-          <TabPanel value='3'>...</TabPanel>
+          <TabPanel value='3'>
+            <DogFoodList />
+          </TabPanel>
         </TabContext>
       </section>
       <SectionBackground image={BannerImage2}>
