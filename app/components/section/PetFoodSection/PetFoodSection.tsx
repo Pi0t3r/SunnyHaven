@@ -1,10 +1,10 @@
 import {useState} from 'react';
-import {CatFoodList} from '../../Foodies Section/Cat/CatFoodList';
-import {DogFoodList} from '../../Foodies Section/Dog/DogFoodList';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import {Tab} from '@mui/material';
+import {FetchCatData} from '../../Dog/FetchData';
+import {FetchDogData} from '../../Cat/FetchData';
 export const PetFoodSection = () => {
   const [value, setValue] = useState('1');
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -30,14 +30,14 @@ export const PetFoodSection = () => {
           </TabList>
         </div>
         <TabPanel value='1'>
-          <CatFoodList />
-          <DogFoodList />
+          <FetchCatData whichData='foodCat' />
+          <FetchDogData whichData='foodDog' />
         </TabPanel>
         <TabPanel value='2'>
-          <CatFoodList />
+          <FetchCatData whichData='foodCat' />
         </TabPanel>
         <TabPanel value='3'>
-          <DogFoodList />
+          <FetchDogData whichData='foodDog' />
         </TabPanel>
       </TabContext>
     </section>

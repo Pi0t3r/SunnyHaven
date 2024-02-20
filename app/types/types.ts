@@ -44,3 +44,10 @@ export interface iCarouselText {
 export interface iButton extends commonProps {
   href: string;
 }
+
+export interface iFetchDataCat {
+  whichData: 'AccesCat' | 'foodCat' | 'toysCat';
+}
+export interface iFetchDataDog {
+  whichData: 'AccesDog' | 'foodDog' | 'toysDog';
+}

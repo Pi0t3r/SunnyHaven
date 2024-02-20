@@ -26,6 +26,27 @@ export interface DogFood extends Document {
   discountPrice: number;
 }
 
-export interface DogToys extends Document {}
+export interface DogToys extends Document {
+  _id: ObjectId;
+  name: string;
+  price: number;
+  imageUrl: string;
+  size: string;
+  isNew: boolean;
+  isSold: boolean;
+  isDiscount: boolean;
+  discountPrice?: number;
+}
 
-export interface DogAccessories extends Document {}
+export interface DogAccessories extends Document {
+  _id: ObjectId;
+  name: string;
+  price: number;
+  imageUrl: string;
+  size: string;
+  color?: string;
+  isNew: boolean;
+  isSold: boolean;
+  isDiscount: boolean;
+  discountPrice?: number;
+}
