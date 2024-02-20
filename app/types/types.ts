@@ -40,3 +40,7 @@ export interface iCarouselText {
     author: string;
   }[];
 }
+
+export interface iButton extends commonProps {
+  href: string;
+}

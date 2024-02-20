@@ -6,7 +6,9 @@ import Quote from '@/public/assets/img/left-quote-512.png';
 
 export function CarouselImage({items}: iCarouselImage) {
   return (
-    <Carousel animation='slide' autoPlay={false} duration={800}>
+    <Carousel animation='slide' autoPlay={false} duration={800} sx={{
+      height:'max-content'
+    }}>
       {items.map((item, index) => (
         <div key={index}>
           <Image
@@ -25,7 +27,7 @@ export function CarouselImage({items}: iCarouselImage) {
               <span className='text-primary'>{item.bolderDesc}</span>
             </p>
           </div>
-          <Button />
+          <Button href='/sale' title='shop now'/>
         </div>
       ))}
     </Carousel>
@@ -40,11 +42,11 @@ export function CarouselText({items}: iCarouselText) {
           <Image
             src={Quote}
             alt='item image carousel'
-            width={150}
-            height={150}
+            width={125}
+            height={125}
           />
-          <p>{item.text}</p>
-          <span>{item.author}</span>
+          <p className='text-gray-color text-3xl leading-10'>{item.text}</p>
+          <span>- {item.author}</span>
         </div>
       ))}
     </Carousel>

@@ -9,6 +9,7 @@ import {CarouselImage, CarouselText} from './components/ui/Carousel';
 import {Logo} from './components/ui/Logo';
 import {Card} from './components/ui/Card';
 import {Button} from './components/ui/Button';
+import {BlogPostSection} from './components/section/BlogPost/BlogPostSection';
 export default function Home() {
   return (
     <main>
@@ -20,7 +21,7 @@ export default function Home() {
       <section className='px-10 my-10'>
         <div className='mb-10'>
           <h3 className='capitalize text-5xl'>pet clothing</h3>
-          <Button />
+          <Button href='/clothes' title='shop now'/>
         </div>
         <Card
           name='Grey hoodie'
@@ -40,8 +41,8 @@ export default function Home() {
       </section>
       <section className='px-10 my-10'>
         <div className='mb-10'>
-          <h3 className='capitalize text-5xl'>pet clothing</h3>
-          <Button />
+          <h3 className='capitalize text-5xl'>best selling products</h3>
+          <Button href='/best' title='shop now'/>
         </div>
         <Card
           name='Grey hoodie'
@@ -52,7 +53,7 @@ export default function Home() {
           src='https://demo.templatesjungle.com/waggy/images/item5.jpg'
         />
       </section>
-      <section></section>
+      <BlogPostSection />
     </main>
   );
 }
