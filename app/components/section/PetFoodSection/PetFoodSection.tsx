@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import {CatFoodList} from '../../Foodies Section/CatFood/CatFoodList';
-import {DogFoodList} from '../../Foodies Section/DogFood/DogFoodList';
+import {CatFoodList} from '../../Foodies Section/Cat/CatFoodList';
+import {DogFoodList} from '../../Foodies Section/Dog/DogFoodList';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';

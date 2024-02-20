@@ -37,7 +37,11 @@ export default function Sidebar({isOpen, setIsOpen}: iSidebar) {
                         key={childIndex}
                         transition={{duration: 0.5, delay: childIndex * 0.3}}
                       >
-                        <Link href={childItem.href} className='text-gray-600'>
+                        <Link
+                          href={childItem.href}
+                          className='text-gray-600'
+                          onClick={() => setIsOpen(false)}
+                        >
                           {childItem.title}
                         </Link>
                       </motion.li>
