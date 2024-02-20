@@ -52,9 +52,9 @@ export interface iFetchDataDog {
   whichData: 'AccesDog' | 'foodDog' | 'toysDog';
 }
 export interface iPost extends commonProps {
-  src: StaticImageData;
+  src: string;
   desc: string;
   title: string;
-  day: string;
+  day: number;
   month: string;
 }
