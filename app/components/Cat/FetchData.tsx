@@ -2,8 +2,8 @@ import {useState, useEffect} from 'react';
 import {CircularProgress} from '@mui/material';
 import {Card} from '../ui/Card';
 import {DogAccessories, DogFood, DogToys} from '@/pages/models/dog.model';
-import {iFetchDataDog} from '@/app/types/types';
-export const FetchDogData = ({whichData}: iFetchDataDog) => {
+import {iFetchDataCat} from '@/app/types/types';
+export const FetchCatData = ({whichData}: iFetchDataCat) => {
   const [loading, setLoading] = useState(true);
   const [dogFood, setDogFood] = useState<DogFood[]>([]);
   const [dogAcc, setDogAcc] = useState<DogAccessories[]>([]);
@@ -15,11 +15,11 @@ export const FetchDogData = ({whichData}: iFetchDataDog) => {
         const response = await fetch(`api/Dog/${whichData}`);
         const data = await response.json();
         if (Array.isArray(data)) {
-          if (whichData === 'AccesDog') {
+          if (whichData === 'AccesCat') {
             setDogAcc(data);
-          } else if (whichData === 'foodDog') {
+          } else if (whichData === 'foodCat') {
             setDogFood(data);
-          } else if (whichData === 'toysDog') {
+          } else if (whichData === 'toysCat') {
             setDogToys(data);
           }
         } else {
@@ -40,7 +40,7 @@ export const FetchDogData = ({whichData}: iFetchDataDog) => {
         <CircularProgress />
       ) : (
         <>
-          {whichData === 'AccesDog' && (
+          {whichData === 'AccesCat' && (
             <>
               <ul>
                 {dogAcc.map((acc, index) => (
@@ -51,7 +51,7 @@ export const FetchDogData = ({whichData}: iFetchDataDog) => {
               </ul>
             </>
           )}
-          {whichData === 'foodDog' && (
+          {whichData === 'foodCat' && (
             <>
               <ul>
                 {dogFood.map((food, index) => (
@@ -62,7 +62,7 @@ export const FetchDogData = ({whichData}: iFetchDataDog) => {
               </ul>
             </>
           )}
-          {whichData === 'toysDog' && (
+          {whichData === 'toysCat' && (
             <>
               <ul>
                 {dogToys.map((toy, index) => (

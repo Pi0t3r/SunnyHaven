@@ -1,10 +1,10 @@
-import { iFetchDataCat } from '@/app/types/types';
+import { iFetchDataDog } from '@/app/types/types';
 import { CatAccessories, CatFood, CatToys } from '@/pages/models/cat.model';
 import { CircularProgress } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { Card } from '../ui/Card';
 
-export const FetchCatData = ({whichData}: iFetchDataCat) => {
+export const FetchDogData = ({whichData}: iFetchDataDog) => {
   const [loading, setLoading] = useState(true);
   const [catFood, setCatFood] = useState<CatFood[]>([]);
   const [catAcc, setCatAcc] = useState<CatAccessories[]>([]);
@@ -16,11 +16,11 @@ export const FetchCatData = ({whichData}: iFetchDataCat) => {
         const response = await fetch(`api/Cat/${whichData}`);
         const data = await response.json();
         if (Array.isArray(data)) {
-          if (whichData === 'AccesCat') {
+          if (whichData === 'AccesDog') {
             setCatAcc(data);
-          } else if (whichData === 'foodCat') {
+          } else if (whichData === 'foodDog') {
             setCatFood(data);
-          } else if (whichData === 'toysCat') {
+          } else if (whichData === 'toysDog') {
             setCatToys(data);
           }
         } else {
@@ -41,7 +41,7 @@ export const FetchCatData = ({whichData}: iFetchDataCat) => {
         <CircularProgress />
       ) : (
         <>
-          {whichData === 'AccesCat' && (
+          {whichData === 'AccesDog' && (
             <>
               <ul>
                 {catAcc.map((acc, index) => (
@@ -52,7 +52,7 @@ export const FetchCatData = ({whichData}: iFetchDataCat) => {
               </ul>
             </>
           )}
-          {whichData === 'foodCat' && (
+          {whichData === 'foodDog' && (
             <>
               <ul>
                 {catFood.map((food, index) => (
@@ -63,7 +63,7 @@ export const FetchCatData = ({whichData}: iFetchDataCat) => {
               </ul>
             </>
           )}
-          {whichData === 'toysCat' && (
+          {whichData === 'toysDog' && (
             <>
               <ul>
                 {catToys.map((toy, index) => (
