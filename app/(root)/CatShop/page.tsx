@@ -1,5 +1,4 @@
 'use client';
-// import {FetchCatData} from '@/app/components/Cat/FetchData';
 import { FetchCatData } from '@/app/components/Cat/FetchData';
 
 export default function CatShop() {

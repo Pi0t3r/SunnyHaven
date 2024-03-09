@@ -3,8 +3,9 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import {Tab} from '@mui/material';
-import {FetchCatData} from '../../Dog/FetchData';
-import {FetchDogData} from '../../Cat/FetchData';
+import {FetchCatData} from '../../Cat/FetchData';
+import {FetchDogData} from '../../Dog/FetchData';
+import {FetchBirdData} from '../../Bird/FetchData';
 export const PetFoodSection = () => {
   const [value, setValue] = useState('1');
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -38,6 +39,9 @@ export const PetFoodSection = () => {
         </TabPanel>
         <TabPanel value='3'>
           <FetchDogData whichData='foodDog' />
+        </TabPanel>
+        <TabPanel value='4'>
+          <FetchBirdData whichData='foodBird' />
         </TabPanel>
       </TabContext>
     </section>

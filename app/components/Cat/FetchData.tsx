@@ -1,26 +1,27 @@
 import {useState, useEffect} from 'react';
 import {CircularProgress} from '@mui/material';
 import {Card} from '../ui/Card';
-import {DogAccessories, DogFood, DogToys} from '@/pages/models/dog.model';
+import {CatAccessories, CatFood, CatToys} from '@/pages/models/cat.model';
 import {iFetchDataCat} from '@/app/types/types';
+
 export const FetchCatData = ({whichData}: iFetchDataCat) => {
   const [loading, setLoading] = useState(true);
-  const [dogFood, setDogFood] = useState<DogFood[]>([]);
-  const [dogAcc, setDogAcc] = useState<DogAccessories[]>([]);
-  const [dogToys, setDogToys] = useState<DogToys[]>([]);
+  const [catFood, setCatFood] = useState<CatFood[]>([]);
+  const [catAcc, setCatAcc] = useState<CatAccessories[]>([]);
+  const [catToys, setCatToys] = useState<CatToys[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`api/Dog/${whichData}`);
+        const response = await fetch(`api/Cat/${whichData}`);
         const data = await response.json();
         if (Array.isArray(data)) {
           if (whichData === 'AccesCat') {
-            setDogAcc(data);
+            setCatAcc(data);
           } else if (whichData === 'foodCat') {
-            setDogFood(data);
+            setCatFood(data);
           } else if (whichData === 'toysCat') {
-            setDogToys(data);
+            setCatToys(data);
           }
         } else {
           console.error(`Invalid format data: ${data}`);
@@ -33,7 +34,6 @@ export const FetchCatData = ({whichData}: iFetchDataCat) => {
     };
     fetchData();
   }, [whichData]);
-
   return (
     <>
       {loading ? (
@@ -43,7 +43,7 @@ export const FetchCatData = ({whichData}: iFetchDataCat) => {
           {whichData === 'AccesCat' && (
             <>
               <ul>
-                {dogAcc.map((acc, index) => (
+                {catAcc.map((acc, index) => (
                   <li key={index}>
                     <Card {...acc} src={acc.imageUrl} />
                   </li>
@@ -54,7 +54,7 @@ export const FetchCatData = ({whichData}: iFetchDataCat) => {
           {whichData === 'foodCat' && (
             <>
               <ul>
-                {dogFood.map((food, index) => (
+                {catFood.map((food, index) => (
                   <li key={index}>
                     <Card {...food} src={food.imageUrl} />
                   </li>
@@ -65,7 +65,7 @@ export const FetchCatData = ({whichData}: iFetchDataCat) => {
           {whichData === 'toysCat' && (
             <>
               <ul>
-                {dogToys.map((toy, index) => (
+                {catToys.map((toy, index) => (
                   <li key={index}>
                     <Card {...toy} src={toy.imageUrl} />
                   </li>

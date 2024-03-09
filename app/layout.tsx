@@ -3,7 +3,8 @@ import {Chilanka} from 'next/font/google';
 import './globals.css';
 import Header from './components/shared/Header';
 import Footer from './components/shared/Footer';
-
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+const queryClient = new QueryClient();
 const inter = Chilanka({subsets: ['latin'], weight: '400'});
 
 export const metadata: Metadata = {
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <Header />
-        {children}
-        <Footer />
+        <QueryClientProvider client={queryClient}>
+          <Header />
+          {children}
+          <Footer />
+        </QueryClientProvider>
       </body>
     </html>
   );
