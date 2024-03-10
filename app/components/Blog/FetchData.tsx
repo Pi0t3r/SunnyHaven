@@ -2,28 +2,22 @@ import {useState, useEffect} from 'react';
 import {CircularProgress} from '@mui/material';
 import {PostModel} from '@/pages/models/post.model';
 import {Post} from '../ui/Post';
+import axios from 'axios';
+import {ErrorMessage} from '../ui/ErrorMessage';
+import {ErrorState} from '@/app/types/types';
 export const FetchPostData = () => {
   const [loading, setLoading] = useState(true);
   const [posts, setPost] = useState<PostModel[]>([]);
+  const [error, setError] = useState<ErrorState | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('api/Blog/Blog');
-        const data = await response.json();
-        if (Array.isArray(data)) {
-          setPost(data);
-        } else {
-          console.error(`Invalid format data: ${data}`);
-        }
-      } catch (err) {
-        console.error(`Error fetching data: ${err}`);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+    axios
+      .get('/api/Blog/Blog')
+      .then((response) => setPost(response.data))
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  });
+  if (error) return <ErrorMessage error={error.message} />;
 
   return (
     <>

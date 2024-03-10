@@ -14,7 +14,7 @@ export default function Header() {
       <div className='flex justify-between items-center px-10 border-b-2 py-4'>
         <ul className='flex w-1/2 justify-between'>
           {NavItems.map((item, index) => (
-            <li onClick={handleClick} key={index}>
+            <li key={index} className='cursor-pointer hover:scale-110 transition duration-300 ease-in hover:text-gray-300'>
               {item.icon}
             </li>
           ))}

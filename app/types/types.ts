@@ -59,3 +59,6 @@ export interface iPost extends commonProps {
   month: string;
 }
 
+export interface ErrorState {
+  message: string;
+}

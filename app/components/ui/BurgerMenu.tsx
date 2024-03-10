@@ -1,7 +1,7 @@
 import {iBurgerMenu} from '@/app/types/types';
 export default function BurgerMenu({open, handleClick}: iBurgerMenu) {
   return (
-    <div className='z-[100]'>
+    <div className='z-[100] cursor-pointer'>
       <button
         onClick={handleClick}
         className='flex flex-col justify-center items-center gap-y-px'

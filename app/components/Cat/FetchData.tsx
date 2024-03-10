@@ -1,15 +1,17 @@
-import {useState, useEffect, SetStateAction} from 'react';
+import {useState, useEffect} from 'react';
 import {CircularProgress} from '@mui/material';
 import {Card} from '../ui/Card';
 import {CatAccessories, CatFood, CatToys} from '@/pages/models/cat.model';
 import {iFetchDataCat} from '@/app/types/types';
 import axios from 'axios';
+import {ErrorMessage} from '../ui/ErrorMessage';
+import {ErrorState} from '@/app/types/types';
 export const FetchCatData = ({whichData}: iFetchDataCat) => {
   const [loading, setLoading] = useState(true);
   const [catFood, setCatFood] = useState<CatFood[]>([]);
   const [catAcc, setCatAcc] = useState<CatAccessories[]>([]);
   const [catToys, setCatToys] = useState<CatToys[]>([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<ErrorState | null>(null);
 
   useEffect(() => {
     axios
@@ -19,37 +21,11 @@ export const FetchCatData = ({whichData}: iFetchDataCat) => {
         setCatAcc(response.data);
         setCatToys(response.data);
       })
-      .catch((error: SetStateAction<null>) => {
-        console.error('Error fetching Cat data: ', error);
-        setError(error);
-      })
+      .catch((error) => setError(error))
       .finally(() => setLoading(false));
   });
-  if(error) return <div></div>
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(`api/Cat/${whichData}`);
-  //       const data = await response.json();
-  //       if (Array.isArray(data)) {
-  //         if (whichData === 'AccesCat') {
-  //           setCatAcc(data);
-  //         } else if (whichData === 'foodCat') {
-  //           setCatFood(data);
-  //         } else if (whichData === 'toysCat') {
-  //           setCatToys(data);
-  //         }
-  //       } else {
-  //         console.error(`Invalid format data: ${data}`);
-  //       }
-  //     } catch (err) {
-  //       console.error(`Error fetching data: ${err}`);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [whichData]);
+  if (error) return <ErrorMessage error={error.message} />;
+
   return (
     <>
       {loading ? (
