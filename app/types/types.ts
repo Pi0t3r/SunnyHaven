@@ -58,3 +58,4 @@ export interface iPost extends commonProps {
   day: number;
   month: string;
 }
+
