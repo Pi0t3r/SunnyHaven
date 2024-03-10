@@ -1,39 +1,30 @@
 import {iFetchDataDog} from '@/app/types/types';
 import {DogToys, DogAccessories, DogFood} from '@/pages/models/dog.model';
-import {CircularProgress, Stack} from '@mui/material';
+import {CircularProgress} from '@mui/material';
 import {useEffect, useState} from 'react';
 import {Card} from '../ui/Card';
-
+import axios from 'axios';
+import {ErrorMessage} from '../ui/ErrorMessage';
+import {ErrorState} from '@/app/types/types';
 export const FetchDogData = ({whichData}: iFetchDataDog) => {
   const [loading, setLoading] = useState(true);
   const [dogFood, setDogFood] = useState<DogFood[]>([]);
   const [dogAcc, setDogAcc] = useState<DogAccessories[]>([]);
   const [dogToys, setDogToys] = useState<DogToys[]>([]);
+  const [error, setError] = useState<ErrorState | null>(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`api/Dog/${whichData}`);
-        const data = await response.json();
-        if (Array.isArray(data)) {
-          if (whichData === 'AccesDog') {
-            setDogAcc(data);
-          } else if (whichData === 'foodDog') {
-            setDogFood(data);
-          } else if (whichData === 'toysDog') {
-            setDogToys(data);
-          }
-        } else {
-          console.error(`Invalid format data: ${data}`);
-        }
-      } catch (err) {
-        console.error(`Error fetching data: ${err}`);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [whichData]);
+    axios
+      .get(`api/Dog/${whichData}`)
+      .then((response) => {
+        setDogFood(response.data);
+        setDogAcc(response.data);
+        setDogToys(response.data);
+      })
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  });
+  if (error) return <ErrorMessage error={error.message} />;
 
   return (
     <>
@@ -46,7 +37,7 @@ export const FetchDogData = ({whichData}: iFetchDataDog) => {
               <ul>
                 {dogAcc.map((acc, index) => (
                   <li key={index}>
-                    <Card {...acc} src={acc.imageUrl} />
+                    <Card {...acc} src={acc.imageUrl}  />
                   </li>
                 ))}
               </ul>

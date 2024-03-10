@@ -62,3 +62,7 @@ export interface iPost extends commonProps {
 export interface ErrorState {
   message: string;
 }
+export interface iModalComponent {
+  open: boolean;
+  onClose: () => void;
+}

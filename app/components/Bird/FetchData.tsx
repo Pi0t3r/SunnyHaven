@@ -12,7 +12,7 @@ export const FetchBirdData = ({whichData}: {whichData: string}) => {
   const [error, setError] = useState<ErrorState | null>(null);
   useEffect(() => {
     axios
-      .get(`/api/Birdd/${whichData}`)
+      .get(`/api/Bird/${whichData}`)
       .then((response) => setBirdFood(response.data))
       .catch((error) => setError(error))
       .finally(() => setLoading(false));

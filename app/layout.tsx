@@ -3,6 +3,7 @@ import {Chilanka} from 'next/font/google';
 import './globals.css';
 import Header from './components/shared/Header';
 import Footer from './components/shared/Footer';
+import {CartProvider} from '@/context/CartContext';
 const inter = Chilanka({subsets: ['latin'], weight: '400'});
 
 export const metadata: Metadata = {
@@ -18,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={inter.className}>
-        <Header />
-        {children}
-        <Footer />
+        <CartProvider>
+          <Header />
+          {children}
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

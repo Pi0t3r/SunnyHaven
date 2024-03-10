@@ -8,6 +8,7 @@ export default function Transition({children}: {children: React.ReactNode}) {
       animate={{opacity: 1}}
       exit={{opacity: 0}}
       transition={{ease: 'easeInOut', duration: 0.75}}
+      className='mt-20'
     >
       {children}
     </motion.div>
