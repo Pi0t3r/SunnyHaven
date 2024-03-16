@@ -1,4 +1,5 @@
 import {StaticImageData} from 'next/image';
+import {ObjectId} from 'mongodb';
 
 export interface commonProps {
   title: string;
@@ -17,6 +18,8 @@ export interface iSectionBackground {
 }
 
 export interface iCard {
+  _id: ObjectId;
+  taste: string;
   src: string;
   name: string;
   price: number;
