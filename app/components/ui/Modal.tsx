@@ -4,16 +4,21 @@ import {useCart} from '@/context/CartContext';
 import Image from 'next/image';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 export const ModalComponent = ({open, onClose}: iModalComponent) => {
-  const {cart, clearCart, removeFromCart} = useCart();
-
+  const {
+    cart,
+    clearCart,
+    removeFromCart,
+    decreaseProductQuantity,
+    increaseProductQuantity,
+  } = useCart();
   const totalPrice = cart.reduce((acc, {product, quantity}) => {
     return acc + product.price * quantity;
   }, 0);
   return (
     <Modal open={open} onClose={onClose}>
-      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-auto bg-white'>
+      <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-fit max-h-96 bg-white'>
         <>
-          <ul className='max-h-52 overflow-y-scroll'>
+          <ul className='max-h-80 overflow-y-scroll'>
             {cart.map(({product, quantity}) => (
               <li key={product._id.toString()} className='border-y-[1px]'>
                 <div className='grid grid-rows-3 grid-cols-[1fr_2fr_1fr]'>
@@ -30,13 +35,28 @@ export const ModalComponent = ({open, onClose}: iModalComponent) => {
                   <p className='row-start-2 row-end-2 col-start-2 col-end-2'>
                     {product.taste}
                   </p>
-                  <p className='row-start-3 row-end-3 col-start-2 col-end-2 text-gray-500'>
-                    Qt:{quantity}
-                  </p>
                   <p className='row-start-3 row-end-3 col-start-3 col-end-3 text-center text-lg font-semibold'>
-                    {product.price * quantity} zł
+                    {(product.price * quantity).toFixed(2)} zł
                   </p>
-                  <button className='text-red-500 row-start-1 row-end-1 col-start-3 col-end-3'>
+                  <div className='row-start-2 row-end-2 col-start-3 col-end-3 flex flex-nowrap items-center justify-between'>
+                    <button
+                      onClick={() => decreaseProductQuantity(product._id)}
+                      className='border-[1px] w-5 h-5 flex items-center justify-center rounded-lg'
+                    >
+                      -
+                    </button>
+                    <p className='text-gray-500'>{quantity}</p>
+                    <button
+                      onClick={() => increaseProductQuantity(product._id)}
+                      className='border-[1px] w-5 h-5 flex items-center justify-center rounded-lg'
+                    >
+                      +
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => removeFromCart(product._id)}
+                    className='text-red-500 row-start-1 row-end-1 col-start-3 col-end-3'
+                  >
                     <DeleteOutlineIcon />
                   </button>
                 </div>
