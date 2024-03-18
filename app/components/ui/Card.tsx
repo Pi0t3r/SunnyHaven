@@ -79,6 +79,9 @@ export const Card = ({
         <button className='border-[1px] rounded-md px-5 py-2 uppercase'>
           <FavoriteIcon />
         </button>
+        <button>
+          <a href={`/Product/${_id}`}>Show more</a>
+        </button>
       </div>
     </div>
   );

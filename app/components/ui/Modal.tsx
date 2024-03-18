@@ -3,6 +3,7 @@ import {iModalComponent} from '@/app/types/types';
 import {useCart} from '@/context/CartContext';
 import Image from 'next/image';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import {Button} from '@mui/material';
 export const ModalComponent = ({open, onClose}: iModalComponent) => {
   const {
     cart,
@@ -65,13 +66,19 @@ export const ModalComponent = ({open, onClose}: iModalComponent) => {
           </ul>
         </>
         <div className='border-t-[1px] p-5'>
-          <p>
+          <p className='text-center'>
             Total: <span className='font-bold'>{totalPrice.toFixed(2)}</span> zł
           </p>
           <div className='flex justify-between'>
-            <button onClick={onClose}>Close</button>
-            <button onClick={clearCart}>Clear Cart</button>
-            <button>Go to Cart</button>
+            <Button variant='outlined' size='small' onClick={onClose}>
+              Close
+            </Button>
+            <Button variant='outlined' size='small' onClick={clearCart}>
+              Clear Cart
+            </Button>
+            <Button variant='outlined' size='small'>
+              Go to Payment
+            </Button>
           </div>
         </div>
       </div>

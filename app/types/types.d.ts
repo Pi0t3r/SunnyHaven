@@ -19,15 +19,16 @@ export interface iSectionBackground {
 
 export interface iCard {
   _id: ObjectId;
-  taste: string;
-  src: string;
   name: string;
+  src: string;
   price: number;
+  taste: string;
   isNew: boolean;
   isSold: boolean;
   isDiscount: boolean;
   discountPrice?: number;
 }
+
 export interface iCarouselImage {
   items: {
     src: StaticImageData;
