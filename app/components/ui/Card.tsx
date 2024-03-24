@@ -4,7 +4,8 @@ import {iCard, commonProps} from '@/app/types/types';
 import {useCart} from '@/context/CartContext';
 import CheckIcon from '@mui/icons-material/Check';
 import {ObjectId} from 'mongodb';
-import {ReactNode, useState} from 'react';
+import {ReactNode} from 'react';
+import {Button, IconButton} from '@mui/material';
 export const InfoCard = ({title}: commonProps) => {
   return (
     <div className='absolute top-5 left-5 border-[1px] bg-primary px-4 py-1 rounded-md'>
@@ -12,19 +13,18 @@ export const InfoCard = ({title}: commonProps) => {
     </div>
   );
 };
+
 export const Card = ({
-  src,
+  _id,
   name,
   price,
-  isNew,
+  src,
   isSold,
-  isDiscount,
   discountPrice,
-  taste,
-  _id,
+  isDiscount,
+  isNew,
 }: iCard) => {
   const {addToCart, cart} = useCart();
-
   const isInCart = (id: ObjectId): boolean => {
     return !!cart.find((el) => el.product._id === id);
   };
@@ -37,15 +37,23 @@ export const Card = ({
       );
     } else {
       return (
-        <button
-          onClick={() => addToCart({name, price, src, taste, _id})}
+        <Button
+          variant='outlined'
+          onClick={() =>
+            addToCart({
+              name,
+              price,
+              src,
+              _id,
+            })
+          }
           className={`border-[1px] rounded-md px-5 py-2 uppercase ${
             isSold && 'bg-gray-300 text-gray-500 line-through'
           }`}
           disabled={isSold}
         >
           add to cart
-        </button>
+        </Button>
       );
     }
   };
@@ -76,12 +84,12 @@ export const Card = ({
       </div>
       <div className='flex gap-4'>
         {renderButton(_id)}
-        <button className='border-[1px] rounded-md px-5 py-2 uppercase'>
+        <IconButton aria-label='favourite' color='primary'>
           <FavoriteIcon />
-        </button>
-        <button>
+        </IconButton>
+        <Button variant='text'>
           <a href={`/Product/${_id}`}>Show more</a>
-        </button>
+        </Button>
       </div>
     </div>
   );

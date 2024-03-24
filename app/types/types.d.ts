@@ -1,5 +1,6 @@
 import {StaticImageData} from 'next/image';
 import {ObjectId} from 'mongodb';
+import {SetStateAction} from 'react';
 
 export interface commonProps {
   title: string;
@@ -22,7 +23,6 @@ export interface iCard {
   name: string;
   src: string;
   price: number;
-  taste: string;
   isNew: boolean;
   isSold: boolean;
   isDiscount: boolean;
@@ -58,7 +58,6 @@ export interface iFetchDataDog {
 export interface iPost extends commonProps {
   src: string;
   desc: string;
-  title: string;
   day: number;
   month: string;
 }

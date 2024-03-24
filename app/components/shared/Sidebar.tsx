@@ -9,7 +9,7 @@ export default function Sidebar({isOpen, setIsOpen}: iSidebar) {
   const [openList, setOpenList] = useState(false);
   return (
     <aside
-      className={`absolute z-50 inset-0 right-0 bg-banner transition duration-700 ease-out grid place-items-center ${
+      className={`absolute z-50 inset-x-0 h-screen bg-banner transition duration-700 ease-out grid place-items-center ${
         isOpen ? 'translate-0 opacity-100' : '-translate-x-full opacity-0'
       }`}
     >

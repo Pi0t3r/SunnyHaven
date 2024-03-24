@@ -11,15 +11,15 @@ mongoose.connection.on('connected', () => {
   console.log('Połączono z bazą danych');
 });
 
-export interface BirdFood extends Document {
+export interface ProductModel extends Document {
   _id: ObjectId;
   name: string;
   price: number;
   imageUrl: string;
-  weight: string;
-  taste: string;
   isNew: boolean;
   isSold: boolean;
   isDiscount: boolean;
   discountPrice?: number;
+  type:string;
+  animal:string;
 }

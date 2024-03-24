@@ -7,7 +7,6 @@ interface Product {
   name: string;
   price: number;
   src: string;
-  taste: string;
 }
 
 interface CartItem {
@@ -37,7 +36,10 @@ const CartContext = createContext<CartContextType>({
 });
 
 export const CartProvider: React.FC<iCartProvider> = ({children}) => {
-  const cartLocalStorage = JSON.parse(localStorage.getItem('cartList') || '[]');
+  const cartLocalStorage =
+    typeof window !== 'undefined'
+      ? JSON.parse(localStorage.getItem('cartList') || '[]')
+      : [];
   const [cart, setCart] = useState<CartItem[]>(cartLocalStorage);
   useEffect(() => {
     localStorage.setItem('cartList', JSON.stringify(cart));

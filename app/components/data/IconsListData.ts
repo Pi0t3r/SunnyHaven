@@ -1,15 +1,8 @@
 import Cat from '@/public/assets/img/cat.svg';
 import Dog from '@/public/assets/img/dog.svg';
-import Steak from '@/public/assets/img/steak.svg';
 import Bird from '@/public/assets/img/bird.svg';
 import Fish from '@/public/assets/img/fish.svg';
 export const iconsList = [
-  {
-    icon: Steak,
-    alt: 'steak svg outlined',
-    title: 'Foodies',
-    href:'#Foodies'
-  },
   {
     icon: Bird,
     alt: 'bird svg outlined',

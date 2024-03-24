@@ -33,13 +33,10 @@ export const ModalComponent = ({open, onClose}: iModalComponent) => {
                   <p className='row-start-1 row-end-1 col-start-2 col-end-2'>
                     {product.name}
                   </p>
-                  <p className='row-start-2 row-end-2 col-start-2 col-end-2'>
-                    {product.taste}
-                  </p>
-                  <p className='row-start-3 row-end-3 col-start-3 col-end-3 text-center text-lg font-semibold'>
+                  <p className='row-start-2 row-end-2 col-start-2 col-end-2 text-center text-lg font-semibold'>
                     {(product.price * quantity).toFixed(2)} zł
                   </p>
-                  <div className='row-start-2 row-end-2 col-start-3 col-end-3 flex flex-nowrap items-center justify-between'>
+                  <div className='row-start-3 row-end-3 col-start-2 col-end-2 flex flex-nowrap items-center justify-between px-5'>
                     <button
                       onClick={() => decreaseProductQuantity(product._id)}
                       className='border-[1px] w-5 h-5 flex items-center justify-center rounded-lg'

@@ -3,9 +3,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import {Tab} from '@mui/material';
-import {FetchCatData} from '../../Cat/FetchData';
-import {FetchDogData} from '../../Dog/FetchData';
-import {FetchBirdData} from '../../Bird/FetchData';
+import {FetchData} from '../../Products/FetchData';
 export const PetFoodSection = () => {
   const [value, setValue] = useState('1');
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -16,7 +14,7 @@ export const PetFoodSection = () => {
     <section id='Foodies' className='px-5'>
       <h2 className='text-4xl text-center'>Pet Foodies</h2>
       <TabContext value={value}>
-        <div>
+        <>
           <TabList
             onChange={handleChange}
             variant='scrollable'
@@ -29,19 +27,18 @@ export const PetFoodSection = () => {
             <Tab value='4' label='Bird' />
             <Tab value='5' label='Fish' />
           </TabList>
-        </div>
+        </>
         <TabPanel value='1'>
-          <FetchCatData whichData='foodCat' />
-          <FetchDogData whichData='foodDog' />
+          <FetchData value='All' type='food' />
         </TabPanel>
         <TabPanel value='2'>
-          <FetchCatData whichData='foodCat' />
+          <FetchData value='Cat' type='food' />
         </TabPanel>
         <TabPanel value='3'>
-          <FetchDogData whichData='foodDog' />
+          <FetchData value='Dog' type='food' />
         </TabPanel>
         <TabPanel value='4'>
-          <FetchBirdData whichData='foodBird' />
+          <FetchData value='Bird' type='food' />
         </TabPanel>
       </TabContext>
     </section>
